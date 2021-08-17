@@ -18,7 +18,7 @@ end
 
 function Interactable:Update()
 	-- Run every frame
-	if Player.actor then
+	if Player.actor and not Player.actor.isDead then
 		if Vector3.Distance(Player.actor.transform.position, self.gameObject.transform.position) <= self.distance then
 			self.targets.interactableCanvas.SetActive(true)
 			if Input.GetKeyDown(string.lower(self.interactKey)) then
