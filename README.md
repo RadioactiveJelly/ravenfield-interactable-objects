@@ -3,6 +3,8 @@ Scripts to help map makers create interactable objects that allow for multiple c
 
 This package contains scripts and sample objects to create your own interactables.
 
+### -----Interactables-----
+
 Each interactable should have a data container that has the following:
 
 - distance (float)
@@ -13,13 +15,13 @@ Each interactable should have a data container that has the following:
 	- This is the string that appears after the interact key.
 	- The text displayed is formatted as: "Press <interactKey> <stringSuffix>" (i.e. "Press F to open door")
 
-Interactable objects also must have these targets:
-- interactableCanvas (gameObject)
+Interactable objects also must have these targets (bold items are required):
+- **interactableCanvas (gameObject)**
 	- This what shows when you're near the object. It'd normally be just a canvas with a text object.
-- dataContainer (DataContainer)
-- canvasText (text)
+- **dataContainer (DataContainer)**
+- **canvasText (text)**
 	- This is what is manipulated by interactKey and stringSuffix
-- interactableBehaviours (GameObject)
+- **interactableBehaviours (GameObject)**
 	- An empty game object holding your Interactable Behaviours. See below for how this works.
 - interactableConditions (GameObject)
 	- An optional target that holds conditions for your interactable.
