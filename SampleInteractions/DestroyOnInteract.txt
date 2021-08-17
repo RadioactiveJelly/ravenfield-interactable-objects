@@ -1,0 +1,17 @@
+﻿-- Register the behaviour
+behaviour("DestroyOnInteract")
+
+function DestroyOnInteract:Start()
+	-- Run when behaviour is created
+	print("Hello World")
+end
+
+function DestroyOnInteract:Update()
+	-- Run every frame
+	
+end
+
+function DestroyOnInteract:Interact()
+	print("Destroy " .. self.targets.targetObject.name)
+	GameObject.Destroy(self.targets.targetObject)
+end

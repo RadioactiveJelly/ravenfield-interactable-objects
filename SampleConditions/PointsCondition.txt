@@ -1,0 +1,21 @@
+﻿-- Register the behaviour
+behaviour("PointsCondition")
+
+function PointsCondition:Start()
+	-- Run when behaviour is created
+	self.ptsRequired = self.targets.dataContainer.GetInt("pointsRequired")
+end
+
+function PointsCondition:Update()
+	-- Run every frame
+	
+end
+
+function PointsCondition:CanInteract()
+	local testPoints = 0
+	if testPoints >= self.ptsRequired then
+		return true
+	end
+	print("Not enough points!")
+	return false
+end

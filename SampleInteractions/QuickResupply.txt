@@ -1,0 +1,20 @@
+﻿-- Register the behaviour
+behaviour("QuickResupply")
+
+function QuickResupply:Start()
+	-- Run when behaviour is created
+	print("Hello World")
+end
+
+function QuickResupply:Update()
+	-- Run every frame
+	
+end
+
+function QuickResupply:Interact()
+	print("Quick Resupply!")
+	for i, weapon in pairs(Player.actor.weaponSlots) do
+		weapon.ammo = weapon.maxAmmo
+		weapon.spareAmmo = weapon.maxSpareAmmo
+	end
+end

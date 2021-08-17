@@ -1,0 +1,43 @@
+﻿-- Register the behaviour
+behaviour("Interactable")
+
+function Interactable:Start()
+	-- Run when behaviour is created
+	self.distance = self.targets.dataContainer.GetFloat("distance")
+	self.interactKey = self.targets.dataContainer.GetString("interactKey")
+	self.targets.canvasText.text = "Press " .. self.targets.dataContainer.GetString("interactKey") .. " " .. self.targets.dataContainer.GetString("stringSuffix")
+
+	self.interactionBehaviours = {}
+	self.interactionBehaviours = self.targets.interactableBehaviours.gameObject.GetComponentsInChildren(ScriptedBehaviour)
+
+	self.interactConditions = {}
+	if self.targets.interactableConditions then
+		self.interactConditions = self.targets.interactableConditions.gameObject.GetComponentsInChildren(ScriptedBehaviour)
+	end
+end
+
+function Interactable:Update()
+	-- Run every frame
+	if Player.actor then
+		if Vector3.Distance(Player.actor.transform.position, self.gameObject.transform.position) <= self.distance then
+			self.targets.interactableCanvas.SetActive(true)
+			if Input.GetKeyDown(string.lower(self.interactKey)) then
+				local canInteract = true
+				for i, condition in pairs(self.interactConditions) do
+					if not condition.self:CanInteract() then
+						canInteract = false
+						print("Condition was false, cannot interact.")
+						break
+					end
+				end
+				if canInteract then
+					for i, interactionBehaviour in pairs(self.interactionBehaviours) do
+						interactionBehaviour.self:Interact()
+					end
+				end
+			end
+		else
+			self.targets.interactableCanvas.SetActive(false)
+		end
+	end
+end
