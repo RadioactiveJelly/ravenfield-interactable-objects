@@ -21,7 +21,8 @@ Interactable objects also must have these targets:
 	- This is what is manipulated by interactKey and stringSuffix
 - interactableBehaviours (GameObject)
 	- An empty game object holding your Interactable Behaviours. See below for how this works.
-
+- interactableConditions (GameObject)
+	- An optional target that holds conditions for your interactable.
 
 ### -----Interactable Behaviours-----
 
@@ -41,6 +42,8 @@ Interactable Conditions are scripts which can prevent the interactable object fr
 Same as above, I've left a sample script for this.
 EACH SCRIPT MUST HAVE THE CanInteract() FUNCTION! This function must also return a boolean (true/false).
 
+As noted above, this is optional. The scripts should run fine without any conditions set.
+	
 To set up you'll need to:
 1. Create an empty object in your interactable object.
 2. Create an scripted behaviour object and set the script to your desired conditions.
